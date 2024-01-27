@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:medibuddy/models/user.dart';
 import 'package:medibuddy/screens/authenticate/authenticate.dart';
+import 'package:medibuddy/screens/home/home.dart';
+import 'package:provider/provider.dart';
 //import 'package:medibuddy/screens/home/home.dart';
 
 class Wrapper extends StatelessWidget {
@@ -7,7 +10,14 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return either Home or Authenticate
-    return Authenticate();
+    // accessing user data from provider everytime we get a new value
+    final user = Provider.of<AppUser>(context);
+
+    // return either Home or Authenticate; if user value is null => user is logged out
+    if (user == null) {
+      return Authenticate();
+    } else {
+      return MyHomePage();
+    }
   }
 }
