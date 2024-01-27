@@ -9,6 +9,13 @@ class AuthService {
     return user != null ? AppUser(uid: user.uid) : null;
   }
 
+  // return app users when there is auth change over the firebase user stresm
+  Stream<AppUser?> get user {
+    return _auth
+        .authStateChanges()
+        .map((User? user) => _userFromFirebaseUser(user));
+  }
+
   // sign in anonymously
   Future signInAnon() async {
     try {
