@@ -11,13 +11,15 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // accessing user data from provider everytime we get a new value
-    final user = Provider.of<AppUser>(context);
+    //final user = Provider.of<AppUser>(context);
 
     // return either Home or Authenticate; if user value is null => user is logged out
-    if (user == null) {
+    return Authenticate();
+
+    /*if (user == null) {
       return Authenticate();
     } else {
       return MyHomePage();
-    }
+    }*/
   }
 }

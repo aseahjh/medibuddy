@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:medibuddy/screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:medibuddy/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:medibuddy/models/user.dart';
 
 void main() async {
-  try {
-    await Firebase.initializeApp();
-    runApp(MyApp());
-  } catch (error) {
-    print("Error Initializing Firebase: $error");
-  }
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

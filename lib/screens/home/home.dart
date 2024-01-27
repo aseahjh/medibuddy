@@ -1,10 +1,24 @@
-import 'dart:io';
+//import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_ml_kit/google_ml_kit.dart';
-import 'package:image_picker/image_picker.dart';
+//import 'package:google_ml_kit/google_ml_kit.dart';
+//import 'package:image_picker/image_picker.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+/*class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -182,4 +196,4 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-}
+}*/
