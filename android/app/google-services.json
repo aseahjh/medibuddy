@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "784088858023",
+    "project_id": "medibuddy-767d5",
+    "storage_bucket": "medibuddy-767d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784088858023:android:d95704e38fd261d2be8a82",
+        "android_client_info": {
+          "package_name": "com.hackhealth.medibuddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuwAaNiSVifEq-2nE7IyLyOadjD-bm82k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

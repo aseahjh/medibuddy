@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
 }
 
 def localProperties = new Properties()
@@ -26,6 +27,7 @@ android {
     namespace "com.example.medibuddy"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
+    compileSDK 34
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -42,13 +44,14 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.medibuddy"
+        applicationId "com.hackhealth.medibuddy"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        targetSDK 34
     }
 
     buildTypes {
@@ -67,4 +70,5 @@ flutter {
 dependencies {
     implementation 'com.google.android.gms:play-services-vision:19.0.0'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    implementation platform("com.google.firebase:firebase-bom:32.7.1")
 }
