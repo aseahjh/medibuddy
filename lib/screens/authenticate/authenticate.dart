@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medibuddy/screens/authenticate/register.dart';
 import 'package:medibuddy/screens/authenticate/sign_in.dart';
 
 class Authenticate extends StatefulWidget {
@@ -9,10 +10,20 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+  // Boolean to check whether to show Sign In Widget or Register Widget
+  bool showSignIn = true;
+
+  // Function to Change Boolean to its Opposite Value
+  void toggleView() {
+    setState(() => showSignIn = !showSignIn);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const SignIn(),
-    );
+    if (showSignIn) {
+      return SignIn(toggleView: toggleView);
+    } else {
+      return Register(toggleView: toggleView);
+    }
   }
 }

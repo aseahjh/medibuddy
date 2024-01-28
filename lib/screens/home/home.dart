@@ -8,17 +8,21 @@ import 'package:medibuddy/services/auth.dart';
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
+  // AuthService Class to call Functions from auth.dart
   final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown[50],
+
+      // App Bar showing Page Title and Log Out Button
       appBar: AppBar(
         title: Text('MediBuddy'),
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        // icons that appear on the right side within the app bar
+
+        // Button to Log Out and Go to Sign In Page
         actions: <Widget>[
           TextButton.icon(
             icon: Icon(Icons.person),
@@ -26,7 +30,7 @@ class MyHomePage extends StatelessWidget {
             onPressed: () async {
               await _auth.signOut();
             },
-          )
+          ),
         ],
       ),
     );

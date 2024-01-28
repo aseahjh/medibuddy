@@ -8,10 +8,12 @@ import 'package:medibuddy/models/user.dart';
 
 void main() async {
   try {
+    // Initializing Firebase
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    // Run App
     runApp(MyApp());
   } catch (error) {
     print('Initializing Firebase Error: $error');
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
-  // wrapping MaterialApp with StreamProvider to listen to the Auth Stream that tells you if there is a User logged in or not
+  // Wrapping MaterialApp with StreamProvider to Listen to the Authentication Stream
+  // Authentication Steam tells you if there is a User Logged In or not
   @override
   Widget build(BuildContext context) {
     return StreamProvider<AppUser?>.value(
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
+        // Goes to Wrapper Widget first to check for Authentification
         home: Wrapper(),
       ),
     );

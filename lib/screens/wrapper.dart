@@ -9,10 +9,11 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // accessing user data from provider everytime we get a new value
+    // Accessing User Data from Authentication Stream Provider everytime we get a New Value
     final user = Provider.of<AppUser?>(context);
 
-    // return either Home or Authenticate; if user value is null => user is logged out
+    // If User Value is Null => User is Logged Out; Goes to Authenticate Widget for Sign Up
+    // Else => User is Logged In; Goes to Home Widget
     if (user == null) {
       return Authenticate();
     } else {
