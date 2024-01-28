@@ -1,20 +1,35 @@
 //import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:medibuddy/services/auth.dart';
 //import 'package:google_ml_kit/google_ml_kit.dart';
 //import 'package:image_picker/image_picker.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class MyHomePage extends StatelessWidget {
+  MyHomePage({super.key});
 
-  @override
-  State<MyWidget> createState() => _MyWidgetState();
-}
+  final AuthService _auth = AuthService();
 
-class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.brown[50],
+      appBar: AppBar(
+        title: Text('MediBuddy'),
+        backgroundColor: Colors.brown[400],
+        elevation: 0.0,
+        // icons that appear on the right side within the app bar
+        actions: <Widget>[
+          TextButton.icon(
+            icon: Icon(Icons.person),
+            label: Text('LOGOUT'),
+            onPressed: () async {
+              await _auth.signOut();
+            },
+          )
+        ],
+      ),
+    );
   }
 }
 

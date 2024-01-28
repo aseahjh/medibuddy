@@ -7,11 +7,15 @@ import 'package:provider/provider.dart';
 import 'package:medibuddy/models/user.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(MyApp());
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    runApp(MyApp());
+  } catch (error) {
+    print('Initializing Firebase Error: $error');
+  }
 }
 
 class MyApp extends StatelessWidget {

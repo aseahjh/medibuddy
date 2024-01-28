@@ -33,4 +33,11 @@ class AuthService {
   //register with email and pwd
 
   //sign out
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (error) {
+      print(error.toString());
+    }
+  }
 }
