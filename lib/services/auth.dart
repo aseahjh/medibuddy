@@ -29,7 +29,18 @@ class AuthService {
     }
   }
 
-  // Sign In with Email and Password
+  // Sign In with Email and Password and Return Custom User Object
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User? user = result.user;
+      return _userFromFirebaseUser(user);
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
+  }
 
   // Fucntion to Register with Email and Password and Return Custom User Object
   Future registerWithEmailAndPassword(String email, String password) async {

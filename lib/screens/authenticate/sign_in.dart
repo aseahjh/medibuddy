@@ -14,9 +14,16 @@ class _SignInState extends State<SignIn> {
   // AuthService Class to call Functions from auth.dart
   final AuthService _auth = AuthService();
 
+  // Global Key for Register Form
+  // Used to Identify the form
+  final _formKey = GlobalKey<FormState>();
+
   // Text Field Inputs
   String email = '';
   String password = '';
+
+  // Error String Output
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +35,7 @@ class _SignInState extends State<SignIn> {
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         title: const Text('Sign In to MediBuddy'),
+
         // Button to go to Register Page
         actions: <Widget>[
           TextButton.icon(
@@ -44,11 +52,17 @@ class _SignInState extends State<SignIn> {
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
+          key: _formKey,
           child: Column(children: <Widget>[
             SizedBox(height: 20.0),
 
             // Email Input
+            // Has Validator that Checks if the Input Field is Empty or Email Input is Invalid
+            // Validator Returns null if Input Field is Valid
             TextFormField(
+              validator: (val) => val!.isEmpty || !val.endsWith('@gmail.com')
+                  ? 'Enter a valid Email: example@gmail.com'
+                  : null,
               onChanged: (val) {
                 setState(() => email = val);
               },
@@ -56,8 +70,13 @@ class _SignInState extends State<SignIn> {
             SizedBox(height: 20.0),
 
             // Password Input
+            // Has Validator that Checks if the Input Field is Empty or Password Input is Invalid
+            // Validator Returns null if Input Field is Valid
             TextFormField(
               obscureText: true,
+              validator: (val) => val!.isEmpty || val.length < 8
+                  ? 'Enter a valid Password of at least 8 characters'
+                  : null,
               onChanged: (val) {
                 setState(() => password = val);
               },
@@ -65,6 +84,8 @@ class _SignInState extends State<SignIn> {
             SizedBox(height: 20.0),
 
             // Sign In Button
+            // When Button is Pressed, Check if the Current State of the Form is Valid using Validators
+            // if Valid, Sign In the User in Firebase using Function signInWithEmailAndPassword from auth.dart and go to Home Page
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.pink[400],
@@ -74,9 +95,22 @@ class _SignInState extends State<SignIn> {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () async {
-                print(email);
-                print(password);
+                if (_formKey.currentState!.validate()) {
+                  dynamic result =
+                      await _auth.signInWithEmailAndPassword(email, password);
+                  if (result == null) {
+                    setState(() => error =
+                        'Unable to Sign In with those Credentials. Please try again.');
+                  }
+                }
               },
+            ),
+            SizedBox(height: 20.0),
+
+            // If there is an Error with Register a New User, Show the Error Message on the Screen
+            Text(
+              error,
+              style: TextStyle(color: Colors.red, fontSize: 14.0),
             ),
           ]),
         ),
@@ -85,9 +119,9 @@ class _SignInState extends State<SignIn> {
   }
 }
 
-// ADD THIS BUTTON TO SIGN IN VIA GOOGLE 
+// ADD THIS BUTTON TO SIGN IN VIA GOOGLE
 
-// ADD THIS BUTTON TO ANONYMOUSLY SIGN IN 
+// ADD THIS BUTTON TO ANONYMOUSLY SIGN IN
 /*ElevatedButton(
   child: const Text('Sign In Anonymously'),
   onPressed: () async {

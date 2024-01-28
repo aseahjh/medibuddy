@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medibuddy/services/auth.dart';
 
 class Register extends StatefulWidget {
-  // rEGISTER Widget with Constructor to accept ToggleView Function
+  // Register Widget with Constructor to accept ToggleView Function
   final Function toggleView;
   Register({super.key, required this.toggleView});
 
@@ -13,6 +13,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   // AuthService Class to call Functions from auth.dart
   final AuthService _auth = AuthService();
+
   // Global Key for Register Form
   // Used to Identify the form
   final _formKey = GlobalKey<FormState>();
@@ -85,7 +86,7 @@ class _RegisterState extends State<Register> {
 
             // Register Button
             // When Button is Pressed, Check if the Current State of the Form is Valid using Validators
-            // if Valid, Register a New User in Firebase using Function registerWithEmailAndPassword from auth.dart
+            // if Valid, Register a New User in Firebase using Function registerWithEmailAndPassword from auth.dart and go to Home Page
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.pink[400],
