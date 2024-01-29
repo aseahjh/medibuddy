@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medibuddy/services/auth.dart';
+import 'package:medibuddy/screens/shared/constants.dart';
 
 class SignIn extends StatefulWidget {
   // SignIn Widget with Constructor to accept ToggleView Function
@@ -60,6 +61,8 @@ class _SignInState extends State<SignIn> {
             // Has Validator that Checks if the Input Field is Empty or Email Input is Invalid
             // Validator Returns null if Input Field is Valid
             TextFormField(
+              decoration:
+                  textInputDecoration.copyWith(hintText: 'Example@gmail.com'),
               validator: (val) => val!.isEmpty || !val.endsWith('@gmail.com')
                   ? 'Enter a valid Email: example@gmail.com'
                   : null,
@@ -73,6 +76,8 @@ class _SignInState extends State<SignIn> {
             // Has Validator that Checks if the Input Field is Empty or Password Input is Invalid
             // Validator Returns null if Input Field is Valid
             TextFormField(
+              decoration:
+                  textInputDecoration.copyWith(hintText: 'Password1234'),
               obscureText: true,
               validator: (val) => val!.isEmpty || val.length < 8
                   ? 'Enter a valid Password of at least 8 characters'
