@@ -124,6 +124,38 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(height: 20.0),
 
+                  // I AM NOT SURE IF THIS IS THE CORRECT WAY TO ADD THIS BUTTON TO SIGN IN VIA GOOGLE
+                  /*ElevatedButton(
+                    child: const Text('Sign In with Google'),
+                    onPressed: () async {
+                      setState(() => loading = true);
+                      dynamic result = await _authService.signInWithGoogle();
+                      if (result == null) {
+                        setState(() {
+                          error =
+                              'Unable to Sign In with those Credentials. Please try again.';
+                          loading = false;
+                        });
+                      }
+                    }
+                  ),*/
+
+                  // I AM NOT SURE IF THIS IS THE CORRECT WAY TO ADD THIS BUTTON TO SIGN IN ANONYMOUSLY
+                  /*ElevatedButton(
+                    child: const Text('Sign In Anonymously'),
+                    onPressed: () async {
+                      setState(() => loading = true);
+                      dynamic result = await _authService.signInAnon();
+                      if (result == null) {
+                        setState(() {
+                          error =
+                              'Unable to Sign In with those Credentials. Please try again.';
+                          loading = false;
+                        });
+                      } 
+                    }
+                  ),*/
+
                   // If there is an Error with Register a New User, Show the Error Message on the Screen
                   Text(
                     error,
@@ -135,18 +167,3 @@ class _SignInState extends State<SignIn> {
           );
   }
 }
-
-// ADD THIS BUTTON TO SIGN IN VIA GOOGLE
-
-// ADD THIS BUTTON TO ANONYMOUSLY SIGN IN
-/*ElevatedButton(
-  child: const Text('Sign In Anonymously'),
-  onPressed: () async {
-    dynamic result = await _authService.signInAnon();
-    if (result == null) {
-      print('Error Signing In');
-    } else {
-      print('Signed In');
-      print(result.uid);
-    }
-  }),*/

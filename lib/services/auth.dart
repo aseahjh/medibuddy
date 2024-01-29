@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:medibuddy/models/user.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   // FirebaseAuth Class to call FirebaseAuth Functions
@@ -34,6 +35,24 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      User? user = result.user;
+      return _userFromFirebaseUser(user);
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
+  }
+
+  // Sign In with Email and Password and Return Custom User Object
+  Future signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication auth = await googleUser!.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: auth.accessToken,
+        idToken: auth.idToken,
+      );
+      UserCredential result = await _auth.signInWithCredential(credential);
       User? user = result.user;
       return _userFromFirebaseUser(user);
     } catch (error) {

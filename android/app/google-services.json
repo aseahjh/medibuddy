@@ -12,7 +12,12 @@
           "package_name": "com.hackhealth.medibuddy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "784088858023-20o3bsfuo92gv79n2nhs9om396j0777f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAuwAaNiSVifEq-2nE7IyLyOadjD-bm82k"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784088858023-20o3bsfuo92gv79n2nhs9om396j0777f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
