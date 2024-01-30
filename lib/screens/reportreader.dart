@@ -1,92 +1,16 @@
-//import 'dart:io';
-
+import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:medibuddy/services/auth.dart';
-//import 'package:google_ml_kit/google_ml_kit.dart';
-//import 'package:image_picker/image_picker.dart';
-import 'package:medibuddy/screens/reportreader.dart';
 
-class Home extends StatefulWidget {
-  @override
-  HomeState createState() => HomeState();
-}
-
-  class HomeState extends State<Home> {
-  // AuthService Class to call Functions from auth.dart
-    final AuthService _auth = AuthService();
-
-    int currentIndex = 0;
-    late List<Widget> screens;
-
-    @override
-    void initState() {
-      super.initState();
-      screens = [
-        ReportReader(),
-        //History(),
-      ];
-    }
+class ReportReader extends StatefulWidget {
+  const ReportReader({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.brown[50],
-
-      // App Bar showing Page Title and Log Out Button
-      appBar: AppBar(
-        title: Text('MediBuddy'),
-        backgroundColor: Colors.brown[400],
-        elevation: 0.0,
-
-        // Button to Log Out and Go to Sign In Page
-        actions: <Widget>[
-          TextButton.icon(
-            icon: Icon(Icons.person),
-            label: Text('LOGOUT'),
-            onPressed: () async {
-              await _auth.signOut();
-            },
-          ),
-        ],
-      ),
-      body: screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.brown[300],
-        selectedItemColor: Color.fromARGB(255, 255, 221, 194),
-        selectedIconTheme: IconThemeData(fill: 1.0),
-        unselectedIconTheme: IconThemeData(fill: 0.5),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.face_outlined),
-            backgroundColor: Colors.brown[300],
-            label: 'report reader',
-          ),
-          //BottomNavigationBarItem(
-            //icon: Icon(Icons.local_drink_outlined),
-            //backgroundColor: Colors.brown[300],
-            //label: 'history',
-          //), 
-        ],
-      ),
-    );
-  }
+  State<ReportReader> createState() => _ReportReaderState();
 }
 
-// TEST 
-
-/*class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _ReportReaderState extends State<ReportReader> {
   bool textScanning = false;
 
   XFile? imageFile;
@@ -227,11 +151,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void getRecognisedText(XFile image) async {
     final inputImage = InputImage.fromFilePath(image.path);
-    final textDetector = GoogleMlKit.vision.textDetector();
-    RecognisedText recognisedText = await textDetector.processImage(inputImage);
+    final textDetector = TextRecognizer(script: TextRecognitionScript.latin);
+    RecognizedText recognizedText = await textDetector.processImage(inputImage);
     await textDetector.close();
     scannedText = "";
-    for (TextBlock block in recognisedText.blocks) {
+    for (TextBlock block in recognizedText.blocks) {
       for (TextLine line in block.lines) {
         scannedText = scannedText + line.text + "\n";
       }
@@ -257,4 +181,4 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-}*/
+}

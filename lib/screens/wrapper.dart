@@ -18,7 +18,7 @@ class Wrapper extends StatelessWidget {
       return Authenticate();
     } else {
       //return home screen once working
-      return MyHomePage();
+      return Home();
     }
   }
 }
